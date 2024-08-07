@@ -20,6 +20,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
     const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
     const customerName = document.getElementById('customerNameDisplay').textContent;
     const currentDate = document.getElementById('currentDateDisplay').textContent;
+    const thankYouMessage = document.getElementById('thankYouMessage').value; // Get the thank you message
 
     const pdfContent = `
         <div style="text-align: center; padding: 20px;">
@@ -29,6 +30,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
             <p>Con: 034 314 41 22 / 076 4964 90 90</p>
             <p>0718670992 / 077 807 90 90</p>
         </div>
+        <hr>
         <div style="text-align: left; padding: 20px;">
             <p><strong>Date:</strong> ${currentDate}</p>
             <p><strong>Quotation for:</strong> ${customerName}</p>
@@ -65,7 +67,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
             </table>
         </div>
         <div style="padding: 20px;">
-            <p>Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.</p>
+            <p>${thankYouMessage}</p>
         </div>
         <div style="text-align: left; padding: 20px;">
             <img src="sign.png" alt="Signature" style="max-width: 200px; padding-bottom: 10px;">
@@ -73,6 +75,8 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
             <p>(MDUP Gunawardana)</p>
             <p>Squadron Leader (Retd)</p>
         </div>
+        <hr>
+        This Qoation is genarated from our system 
     `;
 
     const pdfSection = document.createElement('div');

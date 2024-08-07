@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cleaning Service Quote Generator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -35,6 +37,11 @@
 
             <label for="customerName">Customer Name:</label>
             <input type="text" id="customerName" required>
+
+            <label for="thankYouMessage">Thank You Message:</label>
+            <textarea
+                id="thankYouMessage">Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.</textarea>
+
 
             <button type="submit">Generate Quote</button>
             <button type="button" id="addRow">Add More Rows</button>
@@ -89,5 +96,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
-<footer> Ranjanas Quotation Generator - V 1.2 (2024) by <a href="https://g.co/kgs/a5s7kL9">Dineth Gunawardana</a> </footer>
+<footer> Ranjanas Quotation Generator - V 1.2 (2024) by <a href="https://g.co/kgs/a5s7kL9">Dineth Gunawardana</a>
+</footer>
+
 </html>
