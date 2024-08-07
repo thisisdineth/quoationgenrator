@@ -34,7 +34,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         </div>
         <div style="text-align: left; padding: 20px;">
             <p><strong>Date:</strong> ${currentDate}</p>
-            <p><strong>Quotation for:</strong> ${customerName}</p>
+            <p><strong>Customer Name:</strong> ${customerName}</p>
         </div>
         <div style="padding: 20px;">
             <table style="width: 100%; border-collapse: collapse;">
