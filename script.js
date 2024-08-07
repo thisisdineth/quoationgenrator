@@ -20,6 +20,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
     const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
     const customerName = document.getElementById('customerNameDisplay').textContent;
     const currentDate = document.getElementById('currentDateDisplay').textContent;
+    const thankYouMessage = document.getElementById('thankYouMessage').value || 'Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.';
 
     const pdfContent = `
         <div style="text-align: center; padding: 20px;">
@@ -64,21 +65,24 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
                 </tfoot>
             </table>
         </div>
-        <div style="padding: 20px;">
-            <p>Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.</p>
+        <div style="text-align: left; padding: 20px;">
+            <p>${thankYouMessage}</p>
         </div>
         <div style="text-align: left; padding: 20px;">
-            <img src="sign.png" alt="Signature" style="max-width: 200px; padding-bottom: 10px;">
-            <p>Your Faithfully</p>
-            <p>(MDUP Gunawardana)</p>
-            <p>Squadron Leader (Retd)</p>
+            <img src="sign.png" alt="Signature" style="max-width: 100px;">
+            <p>Manager of CLS Cleaning Service</p>
         </div>
     `;
 
-    const pdfSection = document.createElement('div');
-    pdfSection.innerHTML = pdfContent;
+    const opt = {
+        margin: 1,
+        filename: 'quote.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
 
-    html2pdf().from(pdfSection).save('quote.pdf');
+    html2pdf().from(pdfContent).set(opt).save();
 });
 
 function addQuoteRow() {
@@ -88,29 +92,32 @@ function addQuoteRow() {
     const unitName = document.getElementById('unitName').value;
     const numberOfUnits = parseFloat(document.getElementById('numberOfUnits').value);
     const otherInfo = document.getElementById('otherInfo').value;
-
     const total = pricePerUnit * numberOfUnits;
-    const newRow = document.createElement('tr');
-    newRow.innerHTML = `
+
+    const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
+
+    const row = document.createElement('tr');
+
+    row.innerHTML = `
         <td>${premises}</td>
         <td>${serviceType}</td>
-        <td>Rs. ${pricePerUnit.toFixed(2)}</td>
+        <td>${pricePerUnit.toFixed(2)}</td>
         <td>${unitName}</td>
-        <td>${numberOfUnits}</td>
+        <td>${numberOfUnits.toFixed(2)}</td>
         <td>Rs. ${total.toFixed(2)}</td>
         <td>${otherInfo}</td>
         <td><button type="button" class="deleteButton">Delete</button></td>
     `;
-    document.getElementById('quoteTable').getElementsByTagName('tbody')[0].appendChild(newRow);
+
+    tableBody.appendChild(row);
+
+    row.querySelector('.deleteButton').addEventListener('click', function () {
+        tableBody.removeChild(row);
+        updateSubTotal();
+    });
 
     updateSubTotal();
-
-    document.querySelectorAll('.deleteButton').forEach(button => {
-        button.addEventListener('click', function () {
-            this.closest('tr').remove();
-            updateSubTotal();
-        });
-    });
+    resetForm();
 }
 
 function updateSubTotal() {
@@ -119,20 +126,27 @@ function updateSubTotal() {
 
     Array.from(tableBody.rows).forEach(row => {
         const totalCell = row.cells[5];
-        const totalValue = parseFloat(totalCell.textContent.replace('Rs.', '').replace(',', ''));
+        const totalValue = parseFloat(totalCell.textContent.replace('Rs. ', ''));
         subTotal += totalValue;
     });
 
     document.getElementById('subTotal').textContent = `Rs. ${subTotal.toFixed(2)}`;
 }
 
-function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: '2-digit' };
-    return date.toLocaleDateString('en-US', options);
+function resetForm() {
+    document.getElementById('premises').value = '';
+    document.getElementById('serviceType').value = '';
+    document.getElementById('pricePerUnit').value = '';
+    document.getElementById('unitName').value = '';
+    document.getElementById('numberOfUnits').value = '';
+    document.getElementById('otherInfo').value = '';
 }
 
+// Set initial date
+document.getElementById('currentDateDisplay').textContent = new Date().toLocaleDateString();
+
+// Display customer name
 document.getElementById('customerName').addEventListener('input', function () {
-    const currentDate = new Date();
-    document.getElementById('currentDateDisplay').textContent = formatDate(currentDate);
     document.getElementById('customerNameDisplay').textContent = this.value;
 });
+
