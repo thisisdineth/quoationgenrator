@@ -10,8 +10,8 @@
     <div class="container">
         <div class="header">
             <img src="logo.png" alt="Logo" class="logo">
-            <h1>Ranjanas Facilities Management</h1>
-            <p>All kind of Facilitie services under one roof</p>
+            <h1>Your Business Name</h1>
+            <p>Your Business Address</p>
         </div>
         <h2>Cleaning Service Quote Generator</h2>
         <form id="quoteForm">
@@ -36,21 +36,15 @@
             <label for="customerName">Customer Name:</label>
             <input type="text" id="customerName" required>
 
-            <label for="pdfDetails">Additional PDF Details:</label>
-            <textarea id="pdfDetails"></textarea>
-
             <button type="submit">Generate Quote</button>
             <button type="button" id="addRow">Add More Rows</button>
         </form>
 
-        <div id="quoteSection" style="display:none;">
+        <div id="quoteSection">
             <div class="business-info">
-                <h1>Ranjanas Facilitie Management</h1>
-                <p>Ranjanas Facilities Management<br>
-                    No149/1,Suwasewa Mawatta,<br>
-                    MahaHeenatiyangala,Kalutara South<br>
-                    Con: 034 312 41 22 / 076 4964 90 90<br>
-                    0718670992 / 077 807 90 90</p>
+                <h1>Your Business Name</h1>
+                <p>Your Business Address</p>
+                <p>Date: <span id="currentDateDisplay"></span></p>
                 <p>Quotation for: <span id="customerNameDisplay"></span></p>
             </div>
             <div class="quote-table-container">
@@ -82,11 +76,7 @@
             <div class="footer">
                 <p>Thank you for choosing us!</p>
                 <img src="sign.png" alt="Signature" class="signature">
-                <p>Ranjanas Facilities Management<br>
-                    No149/1,Suwasewa Mawatta,<br>
-                    MahaHeenatiyangala,Kalutara South<br>
-                    Con: 034 312 41 22 / 076 4964 90 90<br>
-                    0718670992 / 077 807 90 90</p>
+                <p>Manager of CLS Cleaning Service</p>
             </div>
         </div>
 

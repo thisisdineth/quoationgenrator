@@ -17,23 +17,21 @@ document.getElementById('printButton').addEventListener('click', function () {
 });
 
 document.getElementById('savePdfButton').addEventListener('click', function () {
-    const customerName = document.getElementById('customerNameDisplay').textContent;
-    const pdfDetails = document.getElementById('pdfDetails').value;
     const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
+    const customerName = document.getElementById('customerNameDisplay').textContent;
+    const currentDate = document.getElementById('currentDateDisplay').textContent;
 
-    // Create a new HTML structure for the PDF
     const pdfContent = `
         <div style="text-align: center; padding: 20px;">
             <img src="logo.png" alt="Logo" style="max-width: 100px;">
-            <h1>Ranjanas Facilities Managemnt</h1>
-            <p>Ranjanas Facilities Management<br>
-                    No149/1,Suwasewa Mawatta,<br>
-                    MahaHeenatiyangala,Kalutara South<br>
-                    Con: 034 312 41 22 / 076 4964 90 90<br>
-                    0718670992 / 077 807 90 90</p>
+            <h1>Ranjanas Facilities Management</h1>
+            <p>No149/1, Suwasewa Mawatta, MahaHeenatiyangala, Kalutara South</p>
+            <p>Con: 034 314 41 22 / 076 4964 90 90</p>
+            <p>0718670992 / 077 807 90 90</p>
         </div>
         <div style="text-align: left; padding: 20px;">
-            <p>Quotation for: ${customerName}</p>
+            <p><strong>Date:</strong> ${currentDate}</p>
+            <p><strong>Quotation for:</strong> ${customerName}</p>
         </div>
         <div style="padding: 20px;">
             <table style="width: 100%; border-collapse: collapse;">
@@ -67,87 +65,74 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
             </table>
         </div>
         <div style="padding: 20px;">
-            <p>${pdfDetails}</p>
+            <p>Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.</p>
         </div>
         <div style="text-align: left; padding: 20px;">
-            <img src="sign.png" alt="Signature" style="max-width: 200px;"><br>
-            Your Faithfully<br>
-(MDUP Gunawardana)<br>
-Squadron Leader (Retd)<br>
+            <img src="sign.png" alt="Signature" style="max-width: 200px; padding-bottom: 10px;">
+            <p>Your Faithfully</p>
+            <p>(MDUP Gunawardana)</p>
+            <p>Squadron Leader (Retd)</p>
         </div>
     `;
 
-    html2pdf().from(pdfContent).save('quote.pdf');
+    const pdfSection = document.createElement('div');
+    pdfSection.innerHTML = pdfContent;
+
+    html2pdf().from(pdfSection).save('quote.pdf');
 });
 
 function addQuoteRow() {
-    // Get form values
     const premises = document.getElementById('premises').value;
     const serviceType = document.getElementById('serviceType').value;
     const pricePerUnit = parseFloat(document.getElementById('pricePerUnit').value);
     const unitName = document.getElementById('unitName').value;
     const numberOfUnits = parseFloat(document.getElementById('numberOfUnits').value);
     const otherInfo = document.getElementById('otherInfo').value;
-    const customerName = document.getElementById('customerName').value;
 
-    // Calculate total
     const total = pricePerUnit * numberOfUnits;
+    const newRow = document.createElement('tr');
+    newRow.innerHTML = `
+        <td>${premises}</td>
+        <td>${serviceType}</td>
+        <td>Rs. ${pricePerUnit.toFixed(2)}</td>
+        <td>${unitName}</td>
+        <td>${numberOfUnits}</td>
+        <td>Rs. ${total.toFixed(2)}</td>
+        <td>${otherInfo}</td>
+        <td><button type="button" class="deleteButton">Delete</button></td>
+    `;
+    document.getElementById('quoteTable').getElementsByTagName('tbody')[0].appendChild(newRow);
 
-    // Create a new row in the table
-    const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
-    const newRow = tableBody.insertRow();
-
-    // Insert cells in the new row
-    const premisesCell = newRow.insertCell(0);
-    const serviceTypeCell = newRow.insertCell(1);
-    const pricePerUnitCell = newRow.insertCell(2);
-    const unitNameCell = newRow.insertCell(3);
-    const numberOfUnitsCell = newRow.insertCell(4);
-    const totalCell = newRow.insertCell(5);
-    const otherInfoCell = newRow.insertCell(6);
-    const actionCell = newRow.insertCell(7);
-
-    // Add values to cells
-    premisesCell.textContent = premises;
-    serviceTypeCell.textContent = serviceType;
-    pricePerUnitCell.textContent = `Rs. ${pricePerUnit.toFixed(2)}`;
-    unitNameCell.textContent = unitName;
-    numberOfUnitsCell.textContent = numberOfUnits;
-    totalCell.textContent = `Rs. ${total.toFixed(2)}`;
-    otherInfoCell.textContent = otherInfo;
-
-    // Add delete button to the last cell
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = 'Delete';
-    deleteButton.className = 'delete-button';
-    deleteButton.addEventListener('click', function () {
-        tableBody.removeChild(newRow);
-        updateSubTotal();
-    });
-    actionCell.appendChild(deleteButton);
-
-    // Update customer name
-    document.getElementById('customerNameDisplay').textContent = customerName;
-
-    // Clear form
-    document.getElementById('quoteForm').reset();
-
-    // Update subtotal
     updateSubTotal();
 
-    // Show the quote section
-    document.getElementById('quoteSection').style.display = 'block';
+    document.querySelectorAll('.deleteButton').forEach(button => {
+        button.addEventListener('click', function () {
+            this.closest('tr').remove();
+            updateSubTotal();
+        });
+    });
 }
 
 function updateSubTotal() {
-    const rows = document.getElementById('quoteTable').getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+    const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
     let subTotal = 0;
-    
-    for (const row of rows) {
+
+    Array.from(tableBody.rows).forEach(row => {
         const totalCell = row.cells[5];
-        const total = parseFloat(totalCell.textContent.replace('Rs. ', ''));
-        subTotal += total;
-    }
-    
+        const totalValue = parseFloat(totalCell.textContent.replace('Rs.', '').replace(',', ''));
+        subTotal += totalValue;
+    });
+
     document.getElementById('subTotal').textContent = `Rs. ${subTotal.toFixed(2)}`;
 }
+
+function formatDate(date) {
+    const options = { year: 'numeric', month: 'long', day: '2-digit' };
+    return date.toLocaleDateString('en-US', options);
+}
+
+document.getElementById('customerName').addEventListener('input', function () {
+    const currentDate = new Date();
+    document.getElementById('currentDateDisplay').textContent = formatDate(currentDate);
+    document.getElementById('customerNameDisplay').textContent = this.value;
+});
