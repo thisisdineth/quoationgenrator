@@ -70,8 +70,8 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         <div style="padding: 20px;">
             <p>${thankYouMessage}</p>
         </div>
-        <div style="padding: 20px;">
-            <img src="sign.png" alt="Signature" style="max-width: 200px; display: block; margin: auto;">
+        <div style="padding: 20px; text-align: left;">
+            <img src="sign.png" alt="Signature" style="max-width: 200px;">
             <p>Your Faithfully</p>
             <p>(MDUP Gunawardana)</p>
             <p>Squadron Leader (Retd)</p>
@@ -88,7 +88,6 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     }).save();
 });
-
 
 
 function addQuoteRow() {
