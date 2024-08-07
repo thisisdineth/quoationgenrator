@@ -23,7 +23,8 @@ body {
     max-width: 100px;
 }
 
-h1, h2 {
+h1,
+h2 {
     color: #333;
 }
 
@@ -37,7 +38,8 @@ label {
     color: #555;
 }
 
-input, textarea {
+input,
+textarea {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ddd;
@@ -71,7 +73,8 @@ button:hover {
     border-collapse: collapse;
 }
 
-.quote-table th, .quote-table td {
+.quote-table th,
+.quote-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
@@ -88,7 +91,8 @@ button:hover {
     text-align: center;
 }
 
-.business-info, .footer {
+.business-info,
+.footer {
     text-align: center;
     margin-top: 20px;
 }
@@ -109,6 +113,20 @@ button:hover {
 
 .delete-button:hover {
     background-color: #e53935;
+}
+
+a {
+    color: #ffffff;
+}
+
+footer {
+    padding-top: 20px;
+    color: white;
+    background-color: #002402;
+    text-align: center;
+    padding: auto;
+    height: 50px;
+    bottom: 0%;
 }
 
 @media print {
