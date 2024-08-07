@@ -20,17 +20,18 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
     const tableBody = document.getElementById('quoteTable').getElementsByTagName('tbody')[0];
     const customerName = document.getElementById('customerNameDisplay').textContent;
     const currentDate = document.getElementById('currentDateDisplay').textContent;
-    const thankYouMessage = document.getElementById('thankYouMessage').value; // Get the thank you message
+    const thankYouMessage = document.getElementById('thankYouMessage').value;
 
     const pdfContent = `
         <div style="text-align: center; padding: 20px;">
-            <img src="logo.png" alt="Logo" style="max-width: 100px;">
-            <h1>Ranjanas Facilities Management</h1>
-            <p>No149/1, Suwasewa Mawatta, MahaHeenatiyangala, Kalutara South</p>
-            <p>Con: 034 314 41 22 / 076 4964 90 90</p>
-            <p>0718670992 / 077 807 90 90</p>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <img src="logo.png" alt="Logo" style="max-width: 100px; margin-bottom: 10px;">
+                <h1 style="margin: 0;">Ranjanas Facilities Management</h1>
+                <p style="margin: 5px 0;">No149/1, Suwasewa Mawatta, MahaHeenatiyangala, Kalutara South</p>
+                <p style="margin: 5px 0;">Con: 034 314 41 22 / 076 4964 90 90</p>
+                <p style="margin: 5px 0;">0718670992 / 077 807 90 90</p>
+            </div>
         </div>
-        <hr>
         <div style="text-align: left; padding: 20px;">
             <p><strong>Date:</strong> ${currentDate}</p>
             <p><strong>Quotation for:</strong> ${customerName}</p>
@@ -69,21 +70,26 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         <div style="padding: 20px;">
             <p>${thankYouMessage}</p>
         </div>
-        <div style="text-align: left; padding: 20px;">
-            <img src="sign.png" alt="Signature" style="max-width: 200px; padding-bottom: 10px;">
+        <div style="padding: 20px;">
+            <img src="sign.png" alt="Signature" style="max-width: 200px; display: block; margin: auto;">
             <p>Your Faithfully</p>
             <p>(MDUP Gunawardana)</p>
             <p>Squadron Leader (Retd)</p>
         </div>
-        <hr>
-        This Qoation is genarated from our system 
     `;
 
     const pdfSection = document.createElement('div');
     pdfSection.innerHTML = pdfContent;
 
-    html2pdf().from(pdfSection).save('quote.pdf');
+    html2pdf().from(pdfSection).set({
+        margin: [10, 10, 20, 10], // Adjust margins as needed
+        filename: 'quote.pdf',
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).save();
 });
+
+
 
 function addQuoteRow() {
     const premises = document.getElementById('premises').value;

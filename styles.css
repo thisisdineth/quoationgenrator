@@ -1,71 +1,83 @@
+/* General styles for the quote generator */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
 }
 
 .header {
     text-align: center;
-    margin-bottom: 20px;
+    padding: 20px;
 }
 
 .logo {
-    max-width: 100px;
+    max-width: 150px;
 }
 
-h1,
+h1 {
+    margin: 10px 0;
+}
+
 h2 {
-    color: #333;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
 }
 
+/* Form styles */
 form {
-    display: flex;
-    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 label {
-    margin-bottom: 5px;
-    color: #555;
+    display: block;
+    margin: 10px 0 5px;
 }
 
-input,
-textarea {
-    margin-bottom: 15px;
-    padding: 10px;
+input, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 16px;
+}
+
+textarea {
+    height: 80px;
+    resize: vertical;
 }
 
 button {
-    padding: 10px;
-    background-color: #4CAF50;
-    color: #fff;
+    padding: 10px 15px;
+    margin: 5px;
     border: none;
     border-radius: 4px;
+    background-color: #007BFF;
+    color: white;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin-bottom: 10px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
+}
+
+/* Quote section styles */
+#quoteSection {
+    margin-top: 20px;
+}
+
+.business-info {
+    text-align: center;
+    padding: 20px;
 }
 
 .quote-table-container {
     margin-top: 20px;
-    overflow-x: auto;
 }
 
 .quote-table {
@@ -73,64 +85,45 @@ button:hover {
     border-collapse: collapse;
 }
 
-.quote-table th,
-.quote-table td {
+.quote-table th, .quote-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
-}
-
-.quote-table th {
-    background-color: #f2f2f2;
-    color: #333;
-}
-
-.actions {
-    margin-top: 20px;
+    padding: 8px;
     text-align: center;
 }
 
-.business-info,
+.quote-table thead {
+    background-color: #f4f4f4;
+}
+
 .footer {
     text-align: center;
-    margin-top: 20px;
+    padding: 20px;
 }
 
+.page-break {
+    page-break-before: always;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+    margin-top: 20px;
+    font-size: 0.8em;
+}
+
+footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Signature and manager details styles */
 .signature {
     max-width: 200px;
-    margin-top: 10px;
-}
-
-.delete-button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.delete-button:hover {
-    background-color: #e53935;
-}
-
-a {
-    color: #ffffff;
-}
-
-footer {
-    padding-top: 20px;
-    color: white;
-    background-color: #002402;
-    text-align: center;
-    padding: auto;
-    height: 50px;
-    bottom: 0%;
-}
-
-@media print {
-    .delete-button {
-        display: none;
-    }
+    padding-bottom: 10px;
 }
