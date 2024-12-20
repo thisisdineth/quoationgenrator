@@ -13,12 +13,12 @@
     <div class="container">
         <div class="header">
             <img src="logo.png" alt="Logo" class="logo">
-            <h1>Ranjanas Facilities Management</h1>
-            <p>All kind of Facilities Services Under One Roof</p>
+            <h1>D.NET web service</h1>
+            <p>All kind of Internet Services</p>
         </div>
-        <h2>Cleaning Service Quote Generator</h2>
+        <h2>Quote Generator</h2>
         <form id="quoteForm">
-            <label for="premises">Premises:</label>
+            <label for="premises">Project Name:</label>
             <input type="text" id="premises" required>
 
             <label for="serviceType">Service Type:</label>
@@ -27,7 +27,7 @@
             <label for="pricePerUnit">Price per Unit:</label>
             <input type="number" id="pricePerUnit" min="0" step="0.01" required>
 
-            <label for="unitName">Unit Name (e.g., sq ft, m²):</label>
+            <label for="unitName">Unit Name :</label>
             <input type="text" id="unitName" required>
 
             <label for="numberOfUnits">Number of Units:</label>
@@ -40,7 +40,7 @@
             <input type="text" id="customerName" required>
 
             <label for="thankYouMessage">Special Notes in PDF:</label>
-            <textarea id="thankYouMessage">Thank you for choosing us for your cleaning needs. We are committed to providing the best service possible and look forward to serving you again in the future.</textarea>
+            <textarea id="thankYouMessage">Thank you for choosing us ,We are committed to providing the best service possible and look forward to serving you again in the future.</textarea>
 
             <button type="submit">Generate Quote</button>
             <button type="button" id="addRow">Add More Rows</button>
@@ -48,7 +48,7 @@
 
         <div id="quoteSection">
             <div class="business-info">
-                <h1>Ranjanas Facilities Management</h1>
+                <h1>D.Net web service</h1>
                 <p>previw of the Quotation</p>
                 <p>Date: <span id="currentDateDisplay"></span></p>
                 <p>Quotation for: <span id="customerNameDisplay"></span></p>
@@ -57,7 +57,7 @@
                 <table id="quoteTable" class="quote-table">
                     <thead>
                         <tr>
-                            <th>Premises</th>
+                            <th>Project Name</th>
                             <th>Service Type</th>
                             <th>Price per Unit</th>
                             <th>Unit Name</th>
@@ -83,8 +83,8 @@
             <div class="footer">
                 <p>PDF Special Note will show here !</p>
                 <img src="sign.png" alt="Signature" class="signature">
-                <p>(MDUP Gunawardana)<br>
-                    Squadron Leader (Retd)<br></p>
+                <p>(Dineth Gunawardana)<br>
+                    Issued by (D.net)<br></p>
             </div>
         </div>
 

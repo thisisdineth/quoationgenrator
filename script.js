@@ -26,10 +26,10 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         <div style="text-align: center; padding: 20px;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <img src="logo.png" alt="Logo" style="max-width: 100px; margin-bottom: 10px;">
-                <h1 style="margin: 0;">Ranjanas Facilities Management</h1>
-                <p style="margin: 5px 0;">No149/1, Suwasewa Mawatta, MahaHeenatiyangala, Kalutara South</p>
-                <p style="margin: 5px 0;">Con: 034 314 41 22 / 076 4964 90 90</p>
-                <p style="margin: 5px 0;">0718670992 / 077 807 90 90</p>
+                <h1 style="margin: 0;">D.NET web service</h1>
+                <p style="margin: 5px 0;">All kind of Internet Services</p>
+                <p style="margin: 5px 0;">Con: 034 2221353/ 070 1840527</p>
+                <p style="margin: 5px 0;">chat@dinethdilshan.com / dinethdilshan.com</p>
             </div>
         </div>
         <div style="text-align: left; padding: 20px;">
@@ -40,7 +40,7 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
             <table style="width: 100%; border-collapse: collapse;">
                 <thead>
                     <tr>
-                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Premises</th>
+                        <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Project Name</th>
                         <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Service Type</th>
                         <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Price per Unit</th>
                         <th style="border: 1px solid #ddd; padding: 10px; text-align: center;">Unit Name</th>
@@ -73,8 +73,8 @@ document.getElementById('savePdfButton').addEventListener('click', function () {
         <div style="padding: 20px; text-align: left;">
             <img src="sign.png" alt="Signature" style="max-width: 200px;">
             <p>Your Faithfully</p>
-            <p>(MDUP Gunawardana)</p>
-            <p>Squadron Leader (Retd)</p>
+            <p>Dineth Gunawardana</p>
+            <p>Web Designer (D.net)</p>
         </div>
     `;
 
